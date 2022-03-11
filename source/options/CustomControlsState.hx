@@ -1,4 +1,4 @@
-package options;
+	package options;
 
 import flixel.ui.FlxButton;
 import flixel.addons.ui.FlxUIButton;
@@ -12,7 +12,7 @@ import flixel.math.FlxPoint;
 import haxe.Json;
 import ui.Hitbox;
 import Config;
-#if lime
+#if html5
 import lime.system.Clipboard;
 #end
 
@@ -385,7 +385,7 @@ class CustomControlsState extends MusicBeatSubstate
 		if (curSelected != 3)
 			changeSelection(0,3);
 
-		var cbtext:String = Clipboard.text; // this not working on android 10 or higher
+		var cbtext:String = Clipboard.text; // this not working on a10
 
 		if (!cbtext.endsWith("}")) return;
 
