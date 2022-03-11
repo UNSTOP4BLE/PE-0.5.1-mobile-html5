@@ -197,7 +197,7 @@ class CharacterEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		reloadCharacterOptions();
 
-		#if android
+		#if html5
 		addVirtualPad(FULL, A_B_C_X_Y_Z);
 
 		var camcontrol = new FlxCamera();
@@ -1122,7 +1122,7 @@ class CharacterEditorState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
 
 		if(!charDropDown.dropPanel.visible) {
-			if (FlxG.keys.justPressed.ESCAPE #if android || _virtualpad.buttonB.justPressed #end) {
+			if (FlxG.keys.justPressed.ESCAPE #if html5 || _virtualpad.buttonB.justPressed #end) {
 				if(goToPlayState) {
 					MusicBeatState.switchState(new PlayState());
 				} else {
@@ -1133,20 +1133,20 @@ class CharacterEditorState extends MusicBeatState
 				return;
 			}
 			
-			if (FlxG.keys.justPressed.R #if android || _virtualpad.buttonZ.justPressed #end) {
+			if (FlxG.keys.justPressed.R #if html5 || _virtualpad.buttonZ.justPressed #end) {
 				FlxG.camera.zoom = 1;
 			}
 
-			if ((FlxG.keys.pressed.E #if android || _virtualpad.buttonX.justPressed #end) && FlxG.camera.zoom < 3) {
+			if ((FlxG.keys.pressed.E #if html5 || _virtualpad.buttonX.justPressed #end) && FlxG.camera.zoom < 3) {
 				FlxG.camera.zoom += elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom > 3) FlxG.camera.zoom = 3;
 			}
-			if ((FlxG.keys.pressed.Q #if android || _virtualpad.buttonY.justPressed #end) && FlxG.camera.zoom > 0.1) {
+			if ((FlxG.keys.pressed.Q #if html5 || _virtualpad.buttonY.justPressed #end) && FlxG.camera.zoom > 0.1) {
 				FlxG.camera.zoom -= elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom < 0.1) FlxG.camera.zoom = 0.1;
 			}
 
-			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if android || _virtualpad.buttonUp.justPressed || _virtualpad.buttonDown.justPressed || _virtualpad.buttonLeft.justPressed || _virtualpad.buttonRight.justPressed && _virtualpad.buttonC.justPressed #end)
+			if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L #if html5 || _virtualpad.buttonUp.justPressed || _virtualpad.buttonDown.justPressed || _virtualpad.buttonLeft.justPressed || _virtualpad.buttonRight.justPressed && _virtualpad.buttonC.justPressed #end)
 			{
 				var addToCam:Float = 500 * elapsed;
 				if (FlxG.keys.pressed.SHIFT)
@@ -1164,7 +1164,7 @@ class CharacterEditorState extends MusicBeatState
 			}
 
 			if(char.animationsArray.length > 0) {
-				if (FlxG.keys.justPressed.W #if android || _virtualpad.buttonA.justPressed #end)
+				if (FlxG.keys.justPressed.W #if html5 || _virtualpad.buttonA.justPressed #end)
 				{
 					curAnim -= 1;
 				}
@@ -1186,7 +1186,7 @@ class CharacterEditorState extends MusicBeatState
 					genBoyOffsets();
 				}
 
-				if (FlxG.keys.justPressed.R #if android || _virtualpad.buttonZ.justPressed #end)
+				if (FlxG.keys.justPressed.R #if html5 || _virtualpad.buttonZ.justPressed #end)
 				{
 					char.animationsArray[curAnim].offsets = [0, 0];
 					
@@ -1196,10 +1196,10 @@ class CharacterEditorState extends MusicBeatState
 				}
 
 				var controlArray:Array<Bool> = [
-					FlxG.keys.justPressed.LEFT #if android || _virtualpad.buttonLeft.justPressed #end,
-					FlxG.keys.justPressed.RIGHT #if android || _virtualpad.buttonRight.justPressed #end,
-					FlxG.keys.justPressed.UP #if android || _virtualpad.buttonUp.justPressed #end,
-					FlxG.keys.justPressed.DOWN #if android || _virtualpad.buttonDown.justPressed #end
+					FlxG.keys.justPressed.LEFT #if html5 || _virtualpad.buttonLeft.justPressed #end,
+					FlxG.keys.justPressed.RIGHT #if html5 || _virtualpad.buttonRight.justPressed #end,
+					FlxG.keys.justPressed.UP #if html5 || _virtualpad.buttonUp.justPressed #end,
+					FlxG.keys.justPressed.DOWN #if html5 || _virtualpad.buttonDown.justPressed #end
 				];			
 				
 				for (i in 0...controlArray.length) {
@@ -1300,19 +1300,6 @@ class CharacterEditorState extends MusicBeatState
 
 		var data:String = Json.stringify(json, "\t");
 
-		if (data.length > 0)
-		{
-			#if android
-                        sys.io.File.saveContent(Main.getDataPath() + daAnim + ".json", data.trim());   
-                        android.AndroidTools.toast("File Saved Successfully!!");                     
-                        #else
-			_file = new FileReference();
-			_file.addEventListener(Event.COMPLETE, onSaveComplete);
-			_file.addEventListener(Event.CANCEL, onSaveCancel);
-			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data, daAnim + ".json");
-                        #end
-		}
 	}
 
 	function ClipboardAdd(prefix:String = ''):String {

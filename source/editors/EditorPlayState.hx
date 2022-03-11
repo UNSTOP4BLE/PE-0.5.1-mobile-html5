@@ -18,7 +18,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
-#if android
+#if html5
 import ui.Mobilecontrols;
 #end
 import FunkinLua;
@@ -44,7 +44,7 @@ class EditorPlayState extends MusicBeatState
 	var startOffset:Float = 0;
 	var startPos:Float = 0;
 
-	#if android
+	#if html5
 	var mcontrols:Mobilecontrols; 
 	#end
 
@@ -159,7 +159,7 @@ class EditorPlayState extends MusicBeatState
 		add(tipText);
 		FlxG.mouse.visible = false;
 
-		#if android
+		#if html5
 			mcontrols = new Mobilecontrols();
 			switch (mcontrols.mode)
 			{
@@ -338,7 +338,7 @@ class EditorPlayState extends MusicBeatState
 	}
 
 	override function update(elapsed:Float) {
-		if (FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end)
+		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			FlxG.sound.music.pause();
 			vocals.pause();

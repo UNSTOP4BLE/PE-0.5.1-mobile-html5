@@ -147,7 +147,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		updateCharTypeBox();
 
-                #if android
+                #if html5
 		addVirtualPad(FULL, A_B_C);
 		#end
 		
@@ -556,19 +556,19 @@ class DialogueCharacterEditorState extends MusicBeatState
 				var moved:Bool = false;
 				var animShit:DialogueAnimArray = character.dialogueAnimations.get(curSelectedAnim);
 				var controlArrayLoop:Array<Bool> = [
-					FlxG.keys.justPressed.A #if android || _virtualpad.buttonLeft.justPressed #end,
-					FlxG.keys.justPressed.W #if android || _virtualpad.buttonUp.justPressed #end, 
-					FlxG.keys.justPressed.D #if android || _virtualpad.buttonRight.justPressed #end, 
-					FlxG.keys.justPressed.S #if android || _virtualpad.buttonDown.justPressed #end
+					FlxG.keys.justPressed.A #if html5 || _virtualpad.buttonLeft.justPressed #end,
+					FlxG.keys.justPressed.W #if html5 || _virtualpad.buttonUp.justPressed #end, 
+					FlxG.keys.justPressed.D #if html5 || _virtualpad.buttonRight.justPressed #end, 
+					FlxG.keys.justPressed.S #if html5 || _virtualpad.buttonDown.justPressed #end
 				];
 
 				var controlArrayIdle:Array<Bool> = [
-					FlxG.keys.justPressed.LEFT #if android || _virtualpad.buttonLeft.justPressed #end,
-					FlxG.keys.justPressed.UP #if android || _virtualpad.buttonUp.justPressed #end,					
-					FlxG.keys.justPressed.RIGHT #if android || _virtualpad.buttonRight.justPressed #end,
-					FlxG.keys.justPressed.DOWN #if android || _virtualpad.buttonDown.justPressed #end
+					FlxG.keys.justPressed.LEFT #if html5 || _virtualpad.buttonLeft.justPressed #end,
+					FlxG.keys.justPressed.UP #if html5 || _virtualpad.buttonUp.justPressed #end,					
+					FlxG.keys.justPressed.RIGHT #if html5 || _virtualpad.buttonRight.justPressed #end,
+					FlxG.keys.justPressed.DOWN #if html5 || _virtualpad.buttonDown.justPressed #end
 				];
-                                #if android
+                                #if html5
                                 if (_virtualpad.buttonA.justPressed)
                                 {
 				for (i in 0...controlArrayLoop.length) {
@@ -680,7 +680,7 @@ class DialogueCharacterEditorState extends MusicBeatState
 				currentGhosts = 0;
 			}
 
-			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 				transitioning = true;
@@ -774,16 +774,11 @@ class DialogueCharacterEditorState extends MusicBeatState
 		{
 			var splittedImage:Array<String> = imageInputText.text.trim().split('_');
 			var characterName:String = splittedImage[0].toLowerCase().replace(' ', '');
-			#if android
-                        sys.io.File.saveContent(Main.getDataPath() + characterName + ".json", data.trim());   
-                        android.AndroidTools.toast("File Saved Successfully!!");                     
-                        #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, characterName + ".json");			
-			#end
 		}
 	}
 

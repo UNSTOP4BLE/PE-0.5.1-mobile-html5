@@ -3,7 +3,7 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
-#elseif android
+#elseif html5
 import extension.webview.WebView;
 import android.*;
 #else
@@ -48,7 +48,7 @@ class FlxVideo extends FlxBasic {
 			}
 		});
 		netStream.play(name);
-		#elseif android
+		#elseif html5
 
 		WebView.onClose = function(){
         	        trace("WebView has been closed!");

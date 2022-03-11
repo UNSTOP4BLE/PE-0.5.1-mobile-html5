@@ -99,7 +99,7 @@ class DialogueEditorState extends MusicBeatState
 		add(animText);
 		changeText();
 
-                #if android
+                #if html5
 		addVirtualPad(NONE, A_B_C_X_Y_Z);
                 #end
 		super.create();
@@ -148,9 +148,6 @@ class DialogueEditorState extends MusicBeatState
 		var loadButton:FlxButton = new FlxButton(20, lineInputText.y + 30, "Load Dialogue", function() {
 			loadDialogue();
 		});
-		var saveButton:FlxButton = new FlxButton(loadButton.x + 120, loadButton.y, "Save Dialogue", function() {
-			saveDialogue();
-		});
 
 		tab_group.add(new FlxText(10, speedStepper.y - 18, 0, 'Interval/Speed (ms):'));
 		tab_group.add(new FlxText(10, characterInputText.y - 18, 0, 'Character:'));
@@ -161,7 +158,6 @@ class DialogueEditorState extends MusicBeatState
 		tab_group.add(lineInputText);
 		tab_group.add(lineInputText);
 		tab_group.add(loadButton);
-		tab_group.add(saveButton);
 		UI_box.addGroup(tab_group);
 	}
 
@@ -341,14 +337,14 @@ class DialogueEditorState extends MusicBeatState
 			if(FlxG.keys.justPressed.SPACE) {
 				reloadText(speedStepper.value);
 			}
-			if(FlxG.keys.justPressed.ESCAPE#if android || FlxG.android.justReleased.BACK #end) {
+			if(FlxG.keys.justPressed.ESCAPE) {
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 				transitioning = true;
 			}
 			var negaMult:Array<Int> = [1, -1];
-			var controlAnim:Array<Bool> = [FlxG.keys.justPressed.W#if android || _virtualpad.buttonX.justPressed #end, FlxG.keys.justPressed.S#if android || _virtualpad.buttonA.justPressed #end];
-			var controlText:Array<Bool> = [FlxG.keys.justPressed.D#if android || _virtualpad.buttonY.justPressed #end, FlxG.keys.justPressed.A#if android || _virtualpad.buttonB.justPressed #end];
+			var controlAnim:Array<Bool> = [FlxG.keys.justPressed.W#if html5 || _virtualpad.buttonX.justPressed #end, FlxG.keys.justPressed.S#if html5 || _virtualpad.buttonA.justPressed #end];
+			var controlText:Array<Bool> = [FlxG.keys.justPressed.D#if html5 || _virtualpad.buttonY.justPressed #end, FlxG.keys.justPressed.A#if html5 || _virtualpad.buttonB.justPressed #end];
 			for (i in 0...controlAnim.length) {
 				if(controlAnim[i] && character.jsonFile.animations.length > 0) {
 					curAnim += negaMult[i];
@@ -367,7 +363,7 @@ class DialogueEditorState extends MusicBeatState
 				}
 			}
 
-			if(FlxG.keys.justPressed.O#if android || _virtualpad.buttonZ.justPressed #end) {
+			if(FlxG.keys.justPressed.O#if html5 || _virtualpad.buttonZ.justPressed #end) {
 				dialogueFile.dialogue.remove(dialogueFile.dialogue[curSelected]);
 				if(dialogueFile.dialogue.length < 1) //You deleted everything, dumbo!
 				{
@@ -376,7 +372,7 @@ class DialogueEditorState extends MusicBeatState
 					];
 				}
 				changeText();
-			} else if(FlxG.keys.justPressed.P#if android || _virtualpad.buttonC.justPressed #end) {
+			} else if(FlxG.keys.justPressed.P#if html5 || _virtualpad.buttonC.justPressed #end) {
 				dialogueFile.dialogue.insert(curSelected + 1, copyDefaultLine());
 				changeText(1);
 			}
@@ -504,23 +500,6 @@ class DialogueEditorState extends MusicBeatState
 		_file.removeEventListener(IOErrorEvent.IO_ERROR, onLoadError);
 		_file = null;
 		trace("Problem loading file");
-	}
-
-	function saveDialogue() {
-		var data:String = Json.stringify(dialogueFile, "\t");
-		if (data.length > 0)
-		{
-                        #if android
-                        sys.io.File.saveContent(Main.getDataPath() + "dialogue.json", data.trim());
-                        android.AndroidTools.toast("File Saved Successfully!!");
-			#else
-			_file = new FileReference();
-			_file.addEventListener(Event.COMPLETE, onSaveComplete);
-			_file.addEventListener(Event.CANCEL, onSaveCancel);
-			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data, "dialogue.json");
-                        #end
-		}
 	}
 
 	function onSaveComplete(_):Void
