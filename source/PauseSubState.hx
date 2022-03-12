@@ -125,7 +125,7 @@ class PauseSubState extends MusicBeatSubstate
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
                 #if html5
-		addVirtualPad(UP_DOWN, A);
+		addVirtualPad(UP_DOWN, A_B);
 		
 		var camcontrol = new FlxCamera();
 		FlxG.cameras.add(camcontrol);

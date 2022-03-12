@@ -1041,14 +1041,17 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
-                #if html5
+            #if html5
+
 			mcontrols = new Mobilecontrols();
 			switch (mcontrols.mode)
 			{
 				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
 					controls.setVirtualPadNOTES(mcontrols._virtualPad, FULL, NONE);
+					addVirtualPad(NONE, B2);
 				case HITBOX:
 					controls.setHitBoxNOTES(mcontrols._hitbox);
+					addVirtualPad(NONE, B2);
 				default:
 			}
 			trackedinputsNOTES = controls.trackedinputsNOTES;
@@ -2227,7 +2230,7 @@ class PlayState extends MusicBeatState
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if (controls.PAUSE || controls.BACK && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', []);
 			if(ret != FunkinLua.Function_Stop) {
