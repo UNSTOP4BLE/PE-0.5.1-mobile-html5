@@ -1048,10 +1048,8 @@ class PlayState extends MusicBeatState
 			{
 				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
 					controls.setVirtualPadNOTES(mcontrols._virtualPad, FULL, NONE);
-					addVirtualPad(NONE, B2);
 				case HITBOX:
 					controls.setHitBoxNOTES(mcontrols._hitbox);
-					addVirtualPad(NONE, B2);
 				default:
 			}
 			trackedinputsNOTES = controls.trackedinputsNOTES;
@@ -1061,6 +1059,13 @@ class PlayState extends MusicBeatState
 
 			mcontrols.visible = false;
 
+			addVirtualPad(NONE, B2);
+		
+			var camcontrol = new FlxCamera();
+			FlxG.cameras.add(camcontrol);
+			camcontrol.bgColor.alpha = 0;
+			_virtualpad.cameras = [camcontrol];
+			
 			add(mcontrols);
 		#end
 
