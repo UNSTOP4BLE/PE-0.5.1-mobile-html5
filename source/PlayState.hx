@@ -212,9 +212,6 @@ class PlayState extends MusicBeatState
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:BGSprite;
 
-	var upperBoppers:BGSprite;
-	var bottomBoppers:BGSprite;
-	var santa:BGSprite;
 	var heyTimer:Float;
 
 	var bgGirls:BackgroundGirls;
@@ -536,37 +533,21 @@ class PlayState extends MusicBeatState
 				limoKillingState = 0;
 
 			case 'mall': //Week 5 - Cocoa, Eggnog
-				var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
+				var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000 + 568, -500 + 116, 0.2, 0.2);
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
 				bg.updateHitbox();
 				add(bg);
 
 				if(!ClientPrefs.lowQuality) {
-					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
-					upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
-					upperBoppers.updateHitbox();
-					add(upperBoppers);
-
-					var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.3, 0.3);
+					var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100 + 607, -600 + 414, 0.3, 0.3);
 					bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
 					bgEscalator.updateHitbox();
 					add(bgEscalator);
 				}
 
-				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
-				add(tree);
-
-				bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
-				bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers HEY', 24, false);
-				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
-				bottomBoppers.updateHitbox();
-				add(bottomBoppers);
-
-				var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
+				var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600 - 16, 700 - 541);
 				add(fgSnow);
 
-				santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
-				add(santa);
 				CoolUtil.precacheSound('Lights_Shut_off');
 
 			case 'mallEvil': //Week 5 - Winter Horrorland
@@ -574,9 +555,6 @@ class PlayState extends MusicBeatState
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
 				bg.updateHitbox();
 				add(bg);
-
-				var evilTree:BGSprite = new BGSprite('christmas/evilTree', 300, -300, 0.2, 0.2);
-				add(evilTree);
 
 				var evilSnow:BGSprite = new BGSprite('christmas/evilSnow', -200, 700);
 				add(evilSnow);
@@ -1567,15 +1545,6 @@ class PlayState extends MusicBeatState
 					antialias = false;
 				}
 
-				// head bopping for bg characters on Mall
-				if(curStage == 'mall') {
-					if(!ClientPrefs.lowQuality)
-						upperBoppers.dance(true);
-	
-					bottomBoppers.dance(true);
-					santa.dance(true);
-				}
-
 				switch (swagCounter)
 				{
 					case 0:
@@ -2199,14 +2168,6 @@ class PlayState extends MusicBeatState
 						}
 					}
 				}
-			case 'mall':
-				if(heyTimer > 0) {
-					heyTimer -= elapsed;
-					if(heyTimer <= 0) {
-						bottomBoppers.dance(true);
-						heyTimer = 0;
-					}
-				}
 		}
 
 		if(!inCutscene) {
@@ -2684,11 +2645,6 @@ class PlayState extends MusicBeatState
 						gf.playAnim('cheer', true);
 						gf.specialAnim = true;
 						gf.heyTimer = time;
-					}
-
-					if(curStage == 'mall') {
-						bottomBoppers.animation.play('hey', true);
-						heyTimer = time;
 					}
 				}
 				if(value != 1) {
@@ -4229,14 +4185,6 @@ class PlayState extends MusicBeatState
 				if(!ClientPrefs.lowQuality) {
 					bgGirls.dance();
 				}
-
-			case 'mall':
-				if(!ClientPrefs.lowQuality) {
-					upperBoppers.dance(true);
-				}
-
-				if(heyTimer <= 0) bottomBoppers.dance(true);
-				santa.dance(true);
 
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
