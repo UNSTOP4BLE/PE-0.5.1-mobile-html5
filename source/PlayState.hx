@@ -446,19 +446,14 @@ class PlayState extends MusicBeatState
 				CoolUtil.precacheSound('thunder_2');
 
 			case 'philly': //Week 3
-				if(!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
-					add(bg);
-				}
-
-				var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
+				var city:BGSprite = new BGSprite('philly/city', -10 + 32, 0 + 16, 0.3, 0.3);
 				city.setGraphicSize(Std.int(city.width * 0.85));
 				city.updateHitbox();
 				add(city);
 
 				phillyCityLights = new FlxTypedGroup<BGSprite>();
 				add(phillyCityLights);
-
+				
 				for (i in 0...5)
 				{
 					var light:BGSprite = new BGSprite('philly/win' + i, city.x, city.y, 0.3, 0.3);
@@ -467,11 +462,13 @@ class PlayState extends MusicBeatState
 					light.updateHitbox();
 					phillyCityLights.add(light);
 				}
+				
+				var streetBehind:BGSprite = new BGSprite('philly/behindTrain', 188 - 13, 50 + 93);
+				add(streetBehind);
 
-				if(!ClientPrefs.lowQuality) {
-					var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
-					add(streetBehind);
-				}
+				var streetBehind2:BGSprite = new BGSprite('philly/behindTrain2', 1083 - 13, 50 + 93);
+				add(streetBehind2);
+			
 
 				phillyTrain = new BGSprite('philly/train', 2000, 360);
 				add(phillyTrain);
@@ -480,7 +477,7 @@ class PlayState extends MusicBeatState
 				CoolUtil.precacheSound('train_passes');
 				FlxG.sound.list.add(trainSound);
 
-				var street:BGSprite = new BGSprite('philly/street', -40, 50);
+				var street:BGSprite = new BGSprite('philly/street', -40 + 27, 50 + 93);
 				add(street);
 
 			case 'limo': //Week 4
@@ -752,9 +749,9 @@ class PlayState extends MusicBeatState
 			blammedLightsBlack.wasAdded = true;
 			modchartSprites.set('blammedLightsBlack', blammedLightsBlack);
 		}
-		if(curStage == 'philly') insert(members.indexOf(blammedLightsBlack) + 1, phillyCityLightsEvent);
-		blammedLightsBlack = modchartSprites.get('blammedLightsBlack');
-		blammedLightsBlack.alpha = 0.0;
+			if(curStage == 'philly') insert(members.indexOf(blammedLightsBlack) + 1, phillyCityLightsEvent);
+			blammedLightsBlack = modchartSprites.get('blammedLightsBlack');
+			blammedLightsBlack.alpha = 0.0;
 
 		var gfVersion:String = SONG.gfVersion;
 		if(gfVersion == null || gfVersion.length < 1) {
@@ -1934,7 +1931,7 @@ class PlayState extends MusicBeatState
 				blammedLightsBlackTween.active = false;
 			if(phillyCityLightsEventTween != null)
 				phillyCityLightsEventTween.active = false;
-
+			
 			if(carTimer != null) carTimer.active = false;
 
 			var chars:Array<Character> = [boyfriend, gf, dad];
@@ -1975,6 +1972,7 @@ class PlayState extends MusicBeatState
 				blammedLightsBlackTween.active = true;
 			if(phillyCityLightsEventTween != null)
 				phillyCityLightsEventTween.active = true;
+			
 			
 			if(carTimer != null) carTimer.active = true;
 
@@ -4212,7 +4210,7 @@ class PlayState extends MusicBeatState
 					phillyCityLights.members[curLight].visible = true;
 					phillyCityLights.members[curLight].alpha = 1;
 				}
-
+		
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
 				{
 					trainCooldown = FlxG.random.int(-4, 0);
