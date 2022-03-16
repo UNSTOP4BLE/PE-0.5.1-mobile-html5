@@ -451,18 +451,19 @@ class PlayState extends MusicBeatState
 				city.updateHitbox();
 				add(city);
 
-				phillyCityLights = new FlxTypedGroup<BGSprite>();
-				add(phillyCityLights);
-				
-				for (i in 0...5)
-				{
-					var light:BGSprite = new BGSprite('philly/win' + i, city.x, city.y, 0.3, 0.3);
-					light.visible = false;
-					light.setGraphicSize(Std.int(light.width * 0.85));
-					light.updateHitbox();
-					phillyCityLights.add(light);
+				if (!ClientPrefs.lowQuality) {
+					phillyCityLights = new FlxTypedGroup<BGSprite>();
+					add(phillyCityLights);
+					
+					for (i in 0...5)
+					{
+						var light:BGSprite = new BGSprite('philly/win' + i, city.x, city.y, 0.3, 0.3);
+						light.visible = false;
+						light.setGraphicSize(Std.int(light.width * 0.85));
+						light.updateHitbox();
+						phillyCityLights.add(light);
+					}
 				}
-				
 				var streetBehind:BGSprite = new BGSprite('philly/behindTrain', 188 - 13, 50 + 93);
 				add(streetBehind);
 
@@ -676,7 +677,7 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		if(curStage == 'philly') {
+		if(curStage == 'philly' && !ClientPrefs.lowQuality) {
 			phillyCityLightsEvent = new FlxTypedGroup<BGSprite>();
 			for (i in 0...5)
 			{
@@ -749,7 +750,7 @@ class PlayState extends MusicBeatState
 			blammedLightsBlack.wasAdded = true;
 			modchartSprites.set('blammedLightsBlack', blammedLightsBlack);
 		}
-			if(curStage == 'philly') insert(members.indexOf(blammedLightsBlack) + 1, phillyCityLightsEvent);
+			if(curStage == 'philly' && !ClientPrefs.lowQuality) insert(members.indexOf(blammedLightsBlack) + 1, phillyCityLightsEvent);
 			blammedLightsBlack = modchartSprites.get('blammedLightsBlack');
 			blammedLightsBlack.alpha = 0.0;
 
@@ -1929,7 +1930,7 @@ class PlayState extends MusicBeatState
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = false;
-			if(phillyCityLightsEventTween != null)
+			if(phillyCityLightsEventTween != null && !ClientPrefs.lowQuality)
 				phillyCityLightsEventTween.active = false;
 			
 			if(carTimer != null) carTimer.active = false;
@@ -1970,7 +1971,7 @@ class PlayState extends MusicBeatState
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = true;
-			if(phillyCityLightsEventTween != null)
+			if(phillyCityLightsEventTween != null && !ClientPrefs.lowQuality)
 				phillyCityLightsEventTween.active = true;
 			
 			
@@ -2081,7 +2082,8 @@ class PlayState extends MusicBeatState
 						trainFrameTiming = 0;
 					}
 				}
-				phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
+				if (!ClientPrefs.lowQuality)
+					phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoParticles.forEach(function(spr:BGSprite) {
@@ -2716,7 +2718,7 @@ class PlayState extends MusicBeatState
 						gf.color = color;
 					}
 					
-					if(curStage == 'philly') {
+					if(curStage == 'philly' && !ClientPrefs.lowQuality) {
 						if(phillyCityLightsEvent != null) {
 							phillyCityLightsEvent.forEach(function(spr:BGSprite) {
 								spr.visible = false;
@@ -2737,7 +2739,7 @@ class PlayState extends MusicBeatState
 						});
 					}
 
-					if(curStage == 'philly') {
+					if(curStage == 'philly' && !ClientPrefs.lowQuality) {
 						phillyCityLights.forEach(function(spr:BGSprite) {
 							spr.visible = false;
 						});
@@ -4198,7 +4200,7 @@ class PlayState extends MusicBeatState
 				if (!trainMoving)
 					trainCooldown += 1;
 
-				if (curBeat % 4 == 0)
+				if (curBeat % 4 == 0 && !ClientPrefs.lowQuality)
 				{
 					phillyCityLights.forEach(function(light:BGSprite)
 					{
