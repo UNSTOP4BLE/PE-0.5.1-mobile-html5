@@ -3,8 +3,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-5,
-				0
+				-95,
+				-90
 			],
 			"anim": "idle",
 			"fps": 24,
@@ -14,8 +14,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				5,
-				-6
+				-84,
+				-96
 			],
 			"anim": "singLEFT",
 			"fps": 24,
@@ -25,8 +25,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-10,
-				-50
+				-107,
+				-142
 			],
 			"anim": "singDOWN",
 			"fps": 24,
@@ -36,8 +36,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-29,
-				27
+				-136,
+				-56
 			],
 			"anim": "singUP",
 			"fps": 24,
@@ -47,8 +47,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-48,
-				-7
+				-138,
+				-97
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -58,8 +58,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				7,
-				19
+				-83,
+				-74
 			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
@@ -69,8 +69,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-15,
-				-19
+				-105,
+				-110
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
@@ -80,8 +80,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-36,
-				27
+				-135,
+				-57
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
@@ -91,8 +91,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-44,
-				22
+				-140,
+				-70
 			],
 			"anim": "singRIGHTmiss",
 			"fps": 24,
@@ -102,8 +102,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-3,
-				5
+				-93,
+				-84
 			],
 			"anim": "hey",
 			"fps": 24,
@@ -113,8 +113,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				15,
-				18
+				-80,
+				-69
 			],
 			"anim": "hurt",
 			"fps": 24,
@@ -124,8 +124,8 @@
 		{
 			"loop": true,
 			"offsets": [
-				-4,
-				0
+				-95,
+				-88
 			],
 			"anim": "scared",
 			"fps": 24,
@@ -135,8 +135,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				37,
-				11
+				-68,
+				-85
 			],
 			"anim": "firstDeath",
 			"fps": 24,
@@ -146,8 +146,8 @@
 		{
 			"loop": true,
 			"offsets": [
-				37,
-				5
+				-66,
+				-93
 			],
 			"anim": "deathLoop",
 			"fps": 24,
@@ -157,8 +157,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				37,
-				69
+				-67,
+				-27
 			],
 			"anim": "deathConfirm",
 			"fps": 24,
@@ -168,8 +168,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-10,
-				-16
+				-100,
+				-96
 			],
 			"anim": "dodge",
 			"fps": 24,
@@ -179,8 +179,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				294,
-				267
+				209,
+				183
 			],
 			"anim": "attack",
 			"fps": 24,
@@ -190,8 +190,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-40,
-				-40
+				-137,
+				-129
 			],
 			"anim": "pre-attack",
 			"fps": 24,
