@@ -83,6 +83,8 @@ class CreditsState extends MusicBeatState
 			['Psych Engine iOS and HTML5'],
 			['UNSTOP4BLE',		    'unstop4ble',		'Main Coder of The Port',	 'https://www.youtube.com/channel/UCR4wDMrnfOPhW-zZQtNU4iA',	    'CFB46B'],
 			['g3om3trycr3ator',		'g3yt',				'Secondary Coder',			 'https://www.youtube.com/channel/UCo6nbxU6x_YXaHVj78e7_vg',	    'C3DDFE'],
+			//Note to the coders above: You may delete this line of code below, I just wish to be credited.
+			['YelloDoesPorts',		'yello',		'He did not do much, just simply fixed the offsets of the characters.',						'https://youtube.com/c/Yellodoesthings',	'FFFFDD33'],
 			['Psych Engine Android'],
 			['M.A. Jigsaw',		    'majigsaw',		    'Main Coder of The Android Port, without him the iOS and HTML5 port whouldnt be possible',	 'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ',	    'F73838'],
 			['Psych Engine Team'],
