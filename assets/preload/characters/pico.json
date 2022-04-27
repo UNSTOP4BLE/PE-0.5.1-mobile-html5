@@ -3,8 +3,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				0,
-				0
+				-160,
+				-80
 			],
 			"fps": 24,
 			"anim": "idle",
@@ -14,8 +14,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				65,
-				9
+				-105,
+				-81
 			],
 			"fps": 24,
 			"anim": "singLEFT",
@@ -25,8 +25,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-68,
-				-7
+				-238,
+				-97
 			],
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -36,8 +36,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-60,
-				41
+				-240,
+				-59
 			],
 			"fps": 24,
 			"anim": "singRIGHTmiss",
@@ -47,8 +47,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				62,
-				64
+				-108,
+				-36
 			],
 			"fps": 24,
 			"anim": "singLEFTmiss",
@@ -58,8 +58,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-29,
-				27
+				-189,
+				-53
 			],
 			"fps": 24,
 			"anim": "singUP",
@@ -69,8 +69,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				200,
-				-70
+				10,
+				-170
 			],
 			"fps": 24,
 			"anim": "singDOWN",
@@ -80,8 +80,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				210,
-				-28
+				10,
+				-128
 			],
 			"fps": 24,
 			"anim": "singDOWNmiss",
@@ -91,8 +91,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-19,
-				67
+				-179,
+				-23
 			],
 			"fps": 24,
 			"anim": "singUPmiss",
